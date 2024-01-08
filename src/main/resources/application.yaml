@@ -1,0 +1,23 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+
+# SPRING JPA
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swiftstay_app
+    username: postgres
+    password: postgrespass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.format_sql: true
+      hibernate.show_sql: true
+andre:
+  app:
+    jwtSecret: "======================BezKoder=Spring==========================="
+    jwtExpirationMs: 86400000
