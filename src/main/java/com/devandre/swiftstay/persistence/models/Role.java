@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -41,13 +42,20 @@ public class Role  extends AbstractEntity {
     }
 
     public void assignRoleToUser(User user) {
-        this.users.add(user);
         user.getRoles().add(this);
+        this.getUsers().add(user);
     }
 
-    public void removeRoleFromUser(User user) {
-        this.users.remove(user);
+    public void removeUserFromRole(User user) {
         user.getRoles().remove(this);
+        this.getUsers().remove(user);
+    }
+
+    public void removeAllUsersFromRole(){
+        if (this.getUsers() != null){
+            List<User> roleUsers = this.getUsers().stream().toList();
+            roleUsers.forEach(this :: removeUserFromRole);
+        }
     }
 
     @Override
