@@ -29,15 +29,14 @@ public class Role  extends AbstractEntity {
     private Long id;
 
     @Column(name = "role_name", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ERole name;
+    private String name;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
-    public Role(ERole name) {
+    public Role(String name) {
         this.name = name;
     }
 

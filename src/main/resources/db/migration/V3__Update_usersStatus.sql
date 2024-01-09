@@ -1,0 +1,2 @@
+UPDATE public.users SET account_status = 'ACTIVE' WHERE user_id = '7fc9dce4-15e4-4be2-b62a-90a62e9d1e0d';
+UPDATE public.users SET account_status = 'ACTIVE' WHERE user_id = 'f2018be9-7ba7-4a0f-84b6-5de1e5e28b6c';

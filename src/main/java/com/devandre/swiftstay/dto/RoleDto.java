@@ -2,17 +2,14 @@ package com.devandre.swiftstay.dto;
 
 import com.devandre.swiftstay.persistence.models.Role;
 import com.devandre.swiftstay.persistence.models.enums.ERole;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * DTO for {@link Role}
  */
-public record ListRoleDto(
-        Long id,
-        String name,
-        Instant createdAt,
-        Instant lastModifiedAt
+public record RoleDto(
+        @NotNull(message = "The name can not be null") String name
 ) implements Serializable {
 }

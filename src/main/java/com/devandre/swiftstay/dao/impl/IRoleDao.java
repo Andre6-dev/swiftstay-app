@@ -30,7 +30,7 @@ public class IRoleDao implements RoleDao {
     }
 
     @Override
-    public Optional<Role> findRoleByName(ERole name) {
+    public Optional<Role> findRoleByName(String name) {
         return roleRepository.findByName(name);
     }
 
@@ -59,14 +59,17 @@ public class IRoleDao implements RoleDao {
     @Override
     public User assignRoleToUser(Long roleId, UUID userId) {
         Optional<User> user = userRepository.findById(userId);
-        Optional<Role>  role = roleRepository.findById(roleId);
+        Optional<Role> role = roleRepository.findById(roleId);
 
-        if (role.isPresent() && !role.get().getUsers().contains(user.get())){
+        if (user.isPresent() && user.get().getRoles().contains(role.get())){
+            throw new RuntimeException(
+                    user.get().getFirstName()+ " is already assigned to the" + role.get().getName()+ " role");
+        }
+        if (role.isPresent()){
             role.get().assignRoleToUser(user.get());
             roleRepository.save(role.get());
-            return user.get();
         }
-        throw new RuntimeException("User already in role");
+        return user.get();
     }
 
     @Override
