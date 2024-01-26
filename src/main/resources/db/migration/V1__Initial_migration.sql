@@ -1,6 +1,8 @@
 CREATE TABLE booked_rooms
 (
     booking_id        UUID         NOT NULL,
+    created_at        TIMESTAMP WITHOUT TIME ZONE,
+    last_modified_at  TIMESTAMP WITHOUT TIME ZONE,
     check_in          date,
     check_out         date,
     guest_full_name   VARCHAR(100) NOT NULL,
@@ -24,11 +26,19 @@ CREATE TABLE roles
 
 CREATE TABLE rooms
 (
-    room_id    UUID         NOT NULL,
-    room_type  VARCHAR(100) NOT NULL,
-    room_price DECIMAL      NOT NULL,
-    is_booked  BOOLEAN,
-    photo_url  VARCHAR(255) NOT NULL,
+    room_id          UUID         NOT NULL,
+    created_at       TIMESTAMP WITHOUT TIME ZONE,
+    last_modified_at TIMESTAMP WITHOUT TIME ZONE,
+    room_name        VARCHAR(100) NOT NULL,
+    room_type        VARCHAR(100) NOT NULL,
+    room_price       DECIMAL      NOT NULL,
+    room_slug        VARCHAR(255),
+    room_description VARCHAR(255),
+    numeber_of_beds  INTEGER,
+    room_dimension   VARCHAR(255),
+    is_booked        BOOLEAN,
+    is_featured      BOOLEAN,
+    photo_url        VARCHAR(255) NOT NULL,
     CONSTRAINT pk_rooms PRIMARY KEY (room_id)
 );
 
