@@ -245,4 +245,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return errorFactory.createErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
+    @ExceptionHandler(value = {IllegalStateException.class})
+    public ResponseEntity<Object> illegalStateException(IllegalStateException ex) {
+        log.error("IllegalStateException: {}", ex.getMessage());
+        return errorFactory.createErrorResponse(HttpStatus.BAD_REQUEST, ex);
+    }
+
 }

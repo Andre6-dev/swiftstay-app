@@ -1,5 +1,6 @@
 package com.devandre.swiftstay.persistence.models;
 
+import com.devandre.swiftstay.persistence.models.shared.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "booked_rooms")
-public class BookedRoom {
+public class BookedRoom extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,14 +37,14 @@ public class BookedRoom {
     @Column(name = "guest_email", nullable = false, length = 100)
     private String guestEmail;
 
-    @Column(name = "adults")
-    private Integer NumOfAdults;
+    @Column(name = "num_of_adults")
+    private int numOfAdults;
 
-    @Column(name = "children")
-    private Integer NumOfChildren;
+    @Column(name = "num_of_children")
+    private int numOfChildren;
 
     @Column(name = "total_guest")
-    private Integer totalNumOfGuest;
+    private int totalNumOfGuest;
 
     @Column(name = "confirmation_Code")
     private String bookingConfirmationCode;
@@ -54,16 +55,16 @@ public class BookedRoom {
     private Room room;
 
     public void calculateTotalNumberOfGuests() {
-        this.totalNumOfGuest = this.NumOfAdults + this.NumOfChildren;
+        this.totalNumOfGuest = this.numOfAdults + this.numOfChildren;
     }
 
     public void setNumOfAdults(Integer numOfAdults) {
-        this.NumOfAdults = numOfAdults;
+        this.numOfAdults = numOfAdults;
         calculateTotalNumberOfGuests();
     }
 
     public void setNumOfChildren(Integer numOfChildren) {
-        this.NumOfChildren = numOfChildren;
+        this.numOfChildren = numOfChildren;
         calculateTotalNumberOfGuests();
     }
 
@@ -76,11 +77,11 @@ public class BookedRoom {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookedRoom that = (BookedRoom) o;
-        return Objects.equals(id, that.id) && Objects.equals(checkInDate, that.checkInDate) && Objects.equals(checkOutDate, that.checkOutDate) && Objects.equals(guestFullName, that.guestFullName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(NumOfAdults, that.NumOfAdults) && Objects.equals(NumOfChildren, that.NumOfChildren) && Objects.equals(totalNumOfGuest, that.totalNumOfGuest) && Objects.equals(bookingConfirmationCode, that.bookingConfirmationCode);
+        return Objects.equals(id, that.id) && Objects.equals(checkInDate, that.checkInDate) && Objects.equals(checkOutDate, that.checkOutDate) && Objects.equals(guestFullName, that.guestFullName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(numOfAdults, that.numOfAdults) && Objects.equals(numOfChildren, that.numOfChildren) && Objects.equals(totalNumOfGuest, that.totalNumOfGuest) && Objects.equals(bookingConfirmationCode, that.bookingConfirmationCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, checkInDate, checkOutDate, guestFullName, guestEmail, NumOfAdults, NumOfChildren, totalNumOfGuest, bookingConfirmationCode);
+        return Objects.hash(id, checkInDate, checkOutDate, guestFullName, guestEmail, numOfAdults, numOfChildren, totalNumOfGuest, bookingConfirmationCode);
     }
 }

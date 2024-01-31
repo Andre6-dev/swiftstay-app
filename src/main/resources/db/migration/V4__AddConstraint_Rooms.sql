@@ -1,5 +1,5 @@
 ALTER TABLE rooms
-    ALTER COLUMN numeber_of_beds SET NOT NULL;
+    ALTER COLUMN number_of_beds SET NOT NULL;
 
 ALTER TABLE rooms
     ALTER COLUMN room_description SET NOT NULL;

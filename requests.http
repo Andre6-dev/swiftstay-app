@@ -37,3 +37,86 @@ POST {{host}}//api/v1/users/remove-role-from-user?userId={{userId3}}&roleId={{ro
 ### REMOVE ALL USERS FROM ROLE
 @roleId4 = 4
 POST {{host}}//api/v1/users/remove-all-users-from-role?roleId={{roleId4}}
+
+### LIST ALL ROOMS
+GET {{host}}//api/v1/rooms
+
+### LIST ALL ROOMS BY NAME
+@roomId = 124d2e1f-7bfc-4821-a4a5-6c9c202f0f22
+GET {{host}}//api/v1/rooms/{{roomId}}
+
+### GET ALL ROOMS BY TYPES
+GET {{host}}//api/v1/rooms/types
+
+### GET ALL ROOMS AVAILABLE
+GET {{host}}//api/v1/rooms/available?checkInDate=2024-01-01&checkOutDate=2024-01-30&roomType=STANDARD
+
+### CREATE ROOM
+POST {{host}}//api/v1/rooms
+Content-Type: application/json
+
+{
+  "name": "New Room",
+  "roomType": "EXECUTIVE",
+  "roomPrice": 250.00,
+  "slug": "example-room",
+  "roomDescription": "A cozy room with a beautiful view",
+  "numberOfBeds": 4,
+  "roomDimension": "250 sq ft",
+  "isBooked": false,
+  "isFeatured": true,
+  "photoUrl": "https://img.freepik.com/free-photo/luxury-classic-modern-bedroom-suite-hotel_105762-1787.jpg?w=1800&t=st=1704986496~exp=1704987096~hmac=e9d10ee78085434f262c530bc56b0adcfc061674ba55fae021acae5a195fed3c"
+}
+
+### DELETE ROOM
+@roomId2 = bc9238b8-d5d8-4855-85d8-fb72c5868884
+DELETE {{host}}//api/v1/rooms/{{roomId2}}
+
+### UPDATE ROOM
+@roomId3 = a1e64c28-ffae-448c-9416-3afc1bea9e9b
+PUT {{host}}//api/v1/rooms/{{roomId3}}
+Content-Type: application/json
+
+{
+  "name": "Modified Room",
+  "roomType": "SUITE",
+  "roomPrice": 250.00,
+  "slug": "example-room",
+  "roomDescription": "A cozy room with a beautiful view",
+  "numberOfBeds": 1,
+  "roomDimension": "250 sq ft",
+  "isBooked": false,
+  "isFeatured": true,
+  "photoUrl": "https://img.freepik.com/free-photo/luxury-classic-modern-bedroom-suite-hotel_105762-1787.jpg?w=1800&t=st=1704986496~exp=1704987096~hmac=e9d10ee78085434f262c530bc56b0adcfc061674ba55fae021acae5a195fed3c"
+}
+
+### LIST ALL BOOKINGS
+GET {{host}}//api/v1/bookings
+
+### LIST ALL BOOKINGS BY EMAIL
+@email=janesmith@example.com
+GET {{host}}//api/v1/bookings/user/{{email}}
+
+### GET BOOK BY CONFIRMATION CODE
+@confirmationCode = ABC123
+GET {{host}}//api/v1/bookings/confirmation/{{confirmationCode}}
+
+### CREATE BOOKING
+@roomId4 = 945e8ced-1f84-406b-b4dc-d78152b89dc4
+POST {{host}}//api/v1/bookings/room/{{roomId4}}
+Content-Type: application/json
+
+{
+  "checkInDate": "2023-01-15",
+  "checkOutDate": "2023-01-20",
+  "guestFullName": "John Doe",
+  "guestEmail": "johndoe@example.com",
+  "numOfAdults": 2,
+  "numOfChildren": 2,
+  "totalNumOfGuest": 4,
+  "bookingConfirmationCode": "ZXC123"
+}
+
+### CANCEL BOOKING
+@bookingId = 1
+DELETE {{host}}//api/v1/bookings/{{bookingId}}

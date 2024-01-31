@@ -1,0 +1,2 @@
+UPDATE public.rooms SET room_type = 'STANDARD' WHERE room_id = '124d2e1f-7bfc-4821-a4a5-6c9c202f0f22';
+UPDATE public.rooms SET room_type = 'SUITE' WHERE room_id = '0fc6ba1c-6fd3-4f67-b69c-1242fe2cb5f9';
