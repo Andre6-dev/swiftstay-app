@@ -5,6 +5,7 @@ package com.devandre.swiftstay.utils;
  */
 public class Constants {
 
+    // API CONSTANTS
     public static final String API_BASE_PATH = "/api/v1/";
 
     public static final class Exception {
